@@ -98,6 +98,18 @@ D. Inheritance
 # Note 1: Closures capture surrounding scope so nested functions can use outer variables.
 # Note 2: Other terms relate to OOP, not lexical scoping.
 
+```
+def outer_function(message):
+    def inner_function():
+        print("Message is:", message)
+    return inner_function
+
+my_func = outer_function("Hello, World!")
+my_func()
+```
+- Even though outer_function is done running, the variable message is still accessible by inner_function because of closure.
+- And the message is printed.
+
 12. 🔁 Tail-call optimization primarily benefits which style of programming?
 A. Imperative
 B. Concurrent
@@ -106,6 +118,30 @@ D. Object‑Oriented
 
 # Note 1: Tail-call optimization avoids stack growth in recursive, functional code.
 # Note 2: It isn’t central to imperative or OO styles.
+
+TAIL - CALL:
+```
+def tail_example(x):
+    return another_function(x)  # ← Tail call
+
+Example:
+def tail_factorial(n, acc=1):
+    if n == 0:
+        return acc
+    return tail_factorial(n - 1, acc * n)  # ← tail call!  
+```
+
+NOT TAIL - CALL:
+```
+def not_tail_example(x):
+    return 1 + another_function(x)  # ← Still needs to add 1 after call
+
+Example:
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)  # ← not a tail call
+```
 
 13. 🗑️ Which garbage collection strategy reclaims memory of objects that are no longer reachable from “roots”?
 A. Reference Counting
@@ -121,6 +157,31 @@ A. Only call functions defined at the top of the file
 B. Pass functions as arguments to other functions  ← correct
 C. Use functions only for arithmetic
 D. Define functions without parentheses
+
+- A language has first-class functions if functions are treated like any other variable.
+That means you can:
+  - Assign functions to variables
+  - Pass them as arguments
+  - Return them from other functions.
+  - Store them in data structures
+- This is very common in Python, JavaScript, etc.
+- Example:
+
+```
+def greet(name):
+    return f"Hello, {name}!"
+
+def shout(text):
+    return text.upper()
+
+def call_func(func, value):
+    return func(value)
+
+result = call_func(greet, "Shahwar")
+print(result)  # Output: Hello, Shahwar!
+
+print(call_func(shout, "good morning"))  # Output: GOOD MORNING
+```
 
 # Note 1: First-class functions can be passed, returned, and assigned like variables.
 # Note 2: B shows that flexibility; A, C, D are false constraints.
