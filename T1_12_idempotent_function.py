@@ -26,3 +26,4 @@ def set_to_zero_if_negative(n: int)->int:
 print(set_to_zero_if_negative(-5))               # Output: 0
 print(set_to_zero_if_negative(7))                # Output: 7
 print(set_to_zero_if_negative(set_to_zero_if_negative(-5)))  # Output: 0
+# Proving idempotency: calling function again doesn’t change result
