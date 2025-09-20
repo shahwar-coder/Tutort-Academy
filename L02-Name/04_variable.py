@@ -57,15 +57,25 @@ Ans:
 
 Example:
 '''
-lst = [1, 2]
-lst2 = lst
-lst.append(3)
-print(lst2)
+# 🔑 Variable Rebinding vs Mutation
 
-# Step-by-step:
-# 1. lst and lst2 point to same list.
-# 2. append mutates that list → [1,2,3].
-# 3. Both names see the change.
+# • Rebinding → variable points to a new object.
+# • Mutation  → object itself changes, variable still points to same object.
+
+# --- Example of Mutation ---
+lst = [1, 2]
+lst2 = lst       # both point to same list
+lst.append(3)    # mutates the list in place
+print(lst2)      # [1, 2, 3]
+# Reason: same object shared, so change is visible through both names.
+
+# --- Example of Rebinding ---
+lst = [1, 2]
+lst2 = lst       # both point to same list initially
+lst = [1, 2, 3]  # rebinding lst → new object
+print(lst2)      # [1, 2]
+# Reason: lst2 still points to old list, lst now points to a new one.
+
 
 
 
