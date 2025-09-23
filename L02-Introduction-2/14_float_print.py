@@ -24,4 +24,24 @@ def get_user_input()->float:
 point_number=get_user_input()
 print(f"Your Float is: {point_number}")
 
+
+
+'''
+Summary: Float Input with Validation and Quit Option
+
+Approach:
+- Function get_user_input() -> float loops until valid input is given.
+- Accepts user input and strips/normalizes it.
+- If user types 'q' or 'quit', raise SystemExit to exit.
+- Try converting input to float.
+- Use math.isfinite() to reject nan, inf, -inf; show message and retry.
+- If conversion fails (ValueError), show error message and retry.
+- Return valid finite float once provided.
+
+Key Points:
+- Handles invalid input gracefully with retry.
+- Ensures returned value is a valid finite float.
+- Provides clean quit option for user.
+'''
+
             
