@@ -31,3 +31,13 @@ print("After x **= 2:", x)
 # Floor division and assign
 x //= 2  # x = x // 2
 print("After x //= 2:", x)
+
+
+'''
+Q. Quick shorthands
+- = basic assignment.
+- +=, -=, *=, /= → update and assign.
+- %= modulus, **= exponent, //= floor divide.
+- Immutables → new object.
+- Mutables → often updated in-place.
+'''
