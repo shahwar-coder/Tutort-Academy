@@ -11,7 +11,7 @@ def find_minimum(numbers: Sequence[float|int])->float: # Sequence[Union[float,in
     raise ValueError("Three numbers are required.")
 
   smallest=numbers[0]
-  for n in numbers:
+  for n in numbers[1:]:
     if n < smallest:
       smallest=n
   return smallest
