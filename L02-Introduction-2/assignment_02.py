@@ -19,3 +19,20 @@ def find_minimum(numbers: Sequence[float|int])->float: # Sequence[Union[float,in
 numbers=[3,2,9]
 minimum_number=find_minimum(numbers)
 print(minimum_number)
+
+
+
+'''
+Summary: Find Minimum Without Using min()
+
+Approach:
+- Assume the first element is the smallest.
+- Loop through the rest of the numbers.
+- If any number is smaller than the current smallest, update it.
+- After the loop ends, return the smallest value.
+
+Key Points:
+- Works for int and float sequences of any length.
+- Raises ValueError if sequence is empty.
+- Time complexity: O(n), same as built-in min().
+'''
