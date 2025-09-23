@@ -17,7 +17,7 @@ def get_user_input()->float:
           if math.isfinite(number):
             return number
           else:
-            print("Invalid, Although nan or inf are acceptable float, please entwr finite float.")
+            print("Invalid, Although nan or inf are acceptable float, please enter finite float.")
         except ValueError:
           print("Invalid Input! Enter Finite Float.")
 
