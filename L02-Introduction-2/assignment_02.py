@@ -1,8 +1,8 @@
 '''
 Problem 1 : Find Minimum of three numbers (do not use min())
 '''
-from typing import Sequence
-def find_minimum(numbers: Sequence[float|int])->float:
+from typing import Sequence #,Union
+def find_minimum(numbers: Sequence[float|int])->float: # Sequence[Union[float,int]]
   """
   Find and return the minimum of exactly 3 numbers.
   Raises ValueError if input does not contain 3 elements.
