@@ -14,7 +14,6 @@
 
 n=6
 for i in range(1,n+1):
-  print(" "*(n-i),end='')
-  for j in range(1,i+1):
-    print(i, end=' ')
-  print()
+    raw_left_padding = " "*(n-i)
+    payload = str(i)*i
+    print(raw_left_padding + " ".join(payload))
