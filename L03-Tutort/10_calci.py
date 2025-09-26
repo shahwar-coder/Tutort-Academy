@@ -16,8 +16,6 @@ Example 2:
 Input: 10 5 1
 Output: 5  # (10 - 5)
 """
-from typing import Iterator
-
 def add(x,y):
   return x+y
 
@@ -39,10 +37,21 @@ operations_map={
   3: divide,
 }
 
-def get_x_y_choice(prompt: str)->Iterator[int]:
+def get_x_y_choice(prompt: str)->tuple[int,int,int]:
   """
+  Ensure valid inputs
   """
+  while True:
+    try:
+      user_input=tuple(list(map(int, input(prompt).split())))
+      if len(user_input)!=3:
+        print("Please enter exactly 2 numbers and 1 choice.")
+        continue
+      return user_input
+    except ValueError:
+      print("Please enter valid inputs.")
   
 
-x,y,choice = map(int, input("Enter two numbers and a choice (0: add, 1: subtract, 2: multiply, 3: divide)").split())
+x,y,choice = get_x_y_choice("Enter two numbers and a choice (0: add, 1: subtract, 2: multiply, 3: divide)")
 result = operations_map.get(choice, lambda a,b: "Invalid choice")(x,y)
+print(result)
