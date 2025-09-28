@@ -12,7 +12,8 @@ print(sum_calculation())
 
 
 # OR ==============================
-# OR ==============================
+# OR ============================== Speed : ✅ [MATHEMATICAL FORMULA APPROACH] -> O(1) — constant time
+# OR ============================== Speed : ❌ [SUM FUNCTION APPROACH] -> O(n), loops from 1 to n
 # OR ==============================
 
 
@@ -20,6 +21,6 @@ def sum_calculation(n: int)->int:
   """
   Calculate sum of 10 natural numbers
   """
-  return n*(n+1)/2
+  return n*(n+1)//2
 
 print(sum_calculation(n=10))
