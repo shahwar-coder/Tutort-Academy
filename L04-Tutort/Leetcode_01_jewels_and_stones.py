@@ -1,5 +1,5 @@
 '''
-771. Jewls and Stones
+771. Jewels and Stones
 https://leetcode.com/problems/jewels-and-stones/description/
 '''
 
