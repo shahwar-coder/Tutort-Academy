@@ -1,11 +1,18 @@
-def print_hollow_line(n: int, i: int) -> None:
-    """
-    Print one line of the hollow diamond pattern.
-    
-    Parameters:
-    n (int): Total number of rows in one half of the diamond.
-    i (int): Current row index (1-based).
-    """
+'''
+n=5
+    *
+   * *
+  *   *
+ *     *
+*       *
+ *     *
+  *   *
+   * *
+    *
+'''
+
+def helper_func(n: int, i: int) -> None:
+    """Print one line of a hollow diamond for half-size n at row i (1-based)."""
     left_spaces = " " * (n - i)
     middle_spaces = " " * (2 * (i - 1))
     if i == 1:
@@ -15,24 +22,16 @@ def print_hollow_line(n: int, i: int) -> None:
 
 
 def print_hollow_diamond(n: int) -> None:
-    """
-    Print a hollow diamond pattern made of '*' for a given size n.
-
-    Example for n = 5:
-        *
-       * *
-      *   *
-     *     *
-    *       *
-     *     *
-      *   *
-       * *
-        *
-    """
-    # Upper half (including the middle line)
+    """Print a hollow diamond of size n (upper half has n rows)."""
+    if n < 1:
+        raise ValueError("n must be >= 1")
     for i in range(1, n + 1):
-        print_hollow_line(n, i)
-
-    # Lower half
+        helper_func(n, i)
     for i in range(n - 1, 0, -1):
-        print_hollow_line(n, i)
+        helper_func(n, i)
+
+
+# usage
+print_hollow_diamond(5)
+
+    
