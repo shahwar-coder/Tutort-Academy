@@ -16,3 +16,4 @@ class Solution:
         # if digits[0]==0:
         #     return [1] + digits
 
+# Basically (in the end) ==> # All digits were 9 → turned to 0 → prepend 1
