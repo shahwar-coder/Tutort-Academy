@@ -112,3 +112,41 @@ It expands the subset by “activating” that element.
 
 # Result:
 # DP transitions to a new state representing a larger visited set.
+
+
+
+
+'''
+Q5. Why is OR important for competitive programming optimisations?
+Ans:
+Because OR is a single CPU instruction (O(1)):
+• faster than loops
+• no condition checks
+• ideal for merging states, flags, permissions, subsets
+'''
+# 1) Faster than loops
+# Instead of looping to add an element to a subset:
+# slow: for x in subset: ...
+# fast:
+subset = subset | (1 << 3)    # instantly adds element 3
+
+# 2) No condition checks
+# No need for if-statements like:
+# if not visited[i]: visited[i] = True
+visited_mask |= (1 << i)      # sets the bit directly
+
+# 3) Merging states (DP)
+dp_next = dp_curr | dp_prev    # combine visited sets or flags
+
+# 4) Permissions / feature flags
+READ = 1 << 0
+WRITE = 1 << 1
+EXEC = 1 << 2
+
+user_perm = READ | WRITE       # combine permissions quickly
+
+# 5) Subset expansion (common in CP)
+mask = 0101      # {0,2}
+mask |= (1 << 1) # becomes 0111 → adds element 1
+
+
