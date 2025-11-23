@@ -135,3 +135,24 @@ print("a =", a, "b =", b)
 # After swap:
 # a = 5 b = 9
 
+
+
+'''
+Q5. How does XOR detect *parity* (odd/even counts of 1-bits or odd occurrences)?
+Ans:
+XOR of bits yields 1 if an odd number of inputs have 1. 
+When XORing a list of values, a nonzero result often indicates an odd-occurring element or odd parity.
+'''
+# Example A: parity of bits (single-bit view)
+# inputs: 1, 1, 0, 1  (count of 1s = 3 → odd)
+parity = 1 ^ 1 ^ 0 ^ 1 = 1   # result 1 → odd parity
+
+# Example B: detect an element with odd occurrences
+list = [2,3,2,4,3]   # 4 appears once (odd), others cancel
+res = 0
+res ^= 2   # 2
+res ^= 3   # 2 ^ 3
+res ^= 2   # (2 ^ 2) ^ 3 = 0 ^ 3 = 3
+res ^= 4   # 3 ^ 4
+res ^= 3   # (3 ^ 3) ^ 4 = 0 ^ 4 = 4
+# result = 4 → the odd-occurrence element
