@@ -36,3 +36,17 @@ So power-of-2 test:
 '''
 # Example:
 # 8 & 7 = 1000 & 0111 = 0000 → power of 2
+
+
+
+'''
+Q4. Why is the identity (a | b) & a = a always true?
+Ans:
+OR never removes 1-bits from a.  
+AND with a then keeps only a’s bits.  
+So the final result must be exactly a.
+'''
+# Example:
+# a = 1010, b = 1100
+# a|b = 1110
+# (a|b)&a = 1110 & 1010 = 1010 = a
