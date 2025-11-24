@@ -1,4 +1,18 @@
 '''
+Q0. What is 1 << n?
+Ans. 1 << n means:
+Shift 1 to the left by n bits.
+This computes:
+2ⁿ
+'''
+# Example:
+1 << 3 = 2³ = 8
+# Binary View of the same Example:
+# 1 = 0001
+# 1 << 3 = 1000  (which is 8 in decimal)
+
+
+'''
 Q1. How do we quickly check if a number is odd or even using bitwise ops?
 Ans:
 Use x & 1.
