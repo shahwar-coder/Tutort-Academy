@@ -9,5 +9,7 @@ Use Sliding Window when:
     • longest substring with constraints
     • number of distinct chars/elements in a range
 
-In short: use sliding window when the answer depends on a **continuous segment** and you can update the segment efficiently by adding the new element and removing the old one.
+In short: use sliding window when the answer depends on a 
+-> **continuous segment** and you can update the segment efficiently 
+- by adding the new element and removing the old one.
 '''
