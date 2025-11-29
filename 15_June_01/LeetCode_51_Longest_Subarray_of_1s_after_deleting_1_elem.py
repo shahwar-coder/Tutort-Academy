@@ -30,39 +30,40 @@ class Solution:
 
 
 '''
-# Easy-to-Understand Key Points for
-# “Longest Subarray of 1s After Deleting One Element”
+### Core Idea (Sliding Window)
+Use a sliding window that always contains:
+- any number of 1s  
+- at most one 0 (this is the zero we pretend to delete)
 
-- You must delete exactly one element.
-  → So the final subarray can contain at most **1 zero** within the window.
-  → Sliding Window fits perfectly.
+### Expanding the Window (Right Pointer)
+When moving the right pointer:
+- If nums[right] is 1 → continue
+- If nums[right] is 0 → increase zero_count
 
-- Maintain a window [start … end) with:
-      zeroes = number of zeros inside the window
-      max_window_size = longest valid window seen so far
+### Shrinking the Window (Left Pointer)
+If zero_count becomes more than 1:
+- Move the left pointer forward
+- If the left pointer passes a 0, decrease zero_count
+- Stop shrinking once zero_count becomes 1 again
 
-- Expand the window from the right:
-      if nums[i] == 0:
-          zeroes += 1
+### Measuring Window Size
+At each step:
+- window_length = right - left + 1  
+- Because we must delete exactly one element, the effective length is:  
+  window_length - 1
 
-- If the window becomes invalid (zeroes > 1):
-      → shrink from the left until zeroes ≤ 1 again
+Two scenarios:
+1. Window has one zero → deleting that zero leaves pure 1s  
+2. Window has no zeros → still must delete one element → length decreases by 1  
 
-- Window size formula:
-      current_window = end - start
-  (end is incremented manually, keeping half-open interval convention)
+### Final Answer
+Track the maximum value of (window_length - 1) during the scan.
 
-- Why final result is max_window_size - 1:
-      - Because the problem REQUIRES deleting one element.
-      - If the window had only 0 zeros, deletion removes one '1'.
-      - If the window had 1 zero, deletion removes that zero.
-      - So final usable length = window_length - 1.
+### Why This Works
+Any valid answer must come from a stretch containing at most one zero.  
+The sliding window efficiently covers all such stretches in one pass.
 
-- Why the algorithm works:
-    - The sliding window always maintains the *best possible* streak
-      where only a single delete is needed to make it all 1s.
-    - We explore each index only once → O(n).
-
-- Time Complexity: O(n)
-- Space Complexity: O(1)
+### Complexity
+Time: O(n)  
+Space: O(1)
 '''
