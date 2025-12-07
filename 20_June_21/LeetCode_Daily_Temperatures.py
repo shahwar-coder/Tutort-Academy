@@ -16,6 +16,63 @@ class Solution:
             stack.append(i)
         return answer
 
+'''
+Day index:      0    1    2    3    4    5    6    7
+Temperature:   73   74   75   71   69   72   76   73
+                 │    │    │    │    │    │    │
+                 │    │    │    │    │    │    └── no warmer day → 0
+                 │    │    │    │    │    └──────→ waits 1 day for 76 (day 6)
+                 │    │    │    │    └───────────→ waits 1 day for 72 (day 5)
+                 │    │    │    └────────────────→ waits 2 days for 72 (day 5)
+                 │    │    └─────────────────────→ waits 4 days for 76 (day 6)
+                 │    └──────────────────────────→ waits 1 day for 75 (day 2)
+                 └───────────────────────────────→ waits 1 day for 74 (day 1)
+'''
+
+
+'''
+### Core Idea (Think of "waiting list" for warmer days)
+We want to know: for each day, how many days do we wait until a warmer temperature?
+We keep a **stack** that stores the **indices** of days still waiting for a warmer day.
+
+### Why Stack Works
+- Temperature on stack top is always the **most recent** still-waiting day.
+- If a new day is warmer → it’s the answer for those older colder days.
+- We can quickly connect a warmer day to the closest colder day before it.
+
+### Expanding Through Days (Left → Right)
+For each day i:
+- If current temperature is **warmer** than the temperature of the day on top of stack:
+    → Pop that older day
+    → Calculate wait time: (i - popped_day_index)
+    → Store in the answer
+- Keep doing this while current day is warmer
+- Then push current day index on stack (it also waits for future warmth)
+
+### Why Do We Pop?
+- A warmer day finally came → no need to keep waiting
+- We remove it from stack because **its job is done**
+
+### What About Days That Never Get Warmer?
+- We leave them in stack
+- Their answer stays **0**
+  (already set during initialization)
+
+### Final Answer
+A list where each spot tells:
+“How many days must this day wait to see a warmer temperature?”
+(or 0 if no future day is warmer)
+
+### Why This Works and Is Fast
+- Each day’s index is **pushed and popped only once**
+- So instead of comparing with every other day,
+  we do the minimum number of comparisons needed
+
+### Complexity
+Time: O(n) → linear scan with smart jumps  
+Space: O(n) → stack stores unresolved days
+'''
+
 
 '''
 ### Core Idea (Monotonic Decreasing Stack)
@@ -54,6 +111,7 @@ If no warmer day is found later,
 Time: O(n) → each index handled once  
 Space: O(n) → stack + answer storage
 '''
+
 
 
 '''DRY-RUN
