@@ -6,17 +6,12 @@ https://leetcode.com/problems/daily-temperatures/
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         stack=[]
-        answer=[]
+        n=len(temperatures)
+        answer=[0]*n
 
-        for i in range(len(temperatures)):
-            # if nothing in stack
-            if not stack:
-                stack.append(i)
-            else: # there is something in stack
-                while temperatures[i] > temperatures[stack[-1]]:
-                    prev_index = stack.pop()
-                    answer.append(i-prev_index)
-                    stack.append(i)
+        for i in range(n):
+            while stack and temperatures[stack[-1]]<temperatures[i]: # loop till it finds a warmer temperature
+                index=stack.pop()
+                answer[index]=i-index
+            stack.append(i)
         return answer
-
-
