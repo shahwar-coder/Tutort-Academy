@@ -26,77 +26,77 @@ class Solution:
 
 '''
 ### Problem in Simple Words
-Given a non-negative integer `x`,
-find the **integer part** of its square root.
+You are given a non-negative number `x`.
+You need to return the **integer part of √x** (square root),
+meaning:
+- Return the **largest integer** whose square is **≤ x**
+- Do NOT use built-in sqrt functions
 
-- You must return ⌊√x⌋ (floor value)
-- Decimal part is ignored
-
-Examples:
-- x = 4 → 2
-- x = 8 → 2 (because √8 ≈ 2.82)
-- x = 0 → 0
-
----
-
-### Core Idea (Binary Search on Answer)
-The square root of `x` lies between:
-- **0** and **x // 2** (for x > 1)
-
-Instead of trying all numbers,
-we **binary search** to find the largest number whose square is ≤ x.
+Example:
+- x = 8 → √8 ≈ 2.8 → answer = 2
+- x = 16 → √16 = 4 → answer = 4
 
 ---
 
-### Why Binary Search Works Here
-As `mid` increases:
-- `mid * mid` also increases
-- So the condition “mid² ≤ x” is **monotonic**
+### Core Idea (Binary Search on the Answer)
+The square root of `x` lies somewhere between:
+- **1** and **x/2** (for x > 1)
 
-That makes it perfect for binary search.
+We use **binary search** to efficiently find the correct integer.
+
+Why binary search?
+- The function `f(n) = n²` is **monotonic** (always increasing)
+- This makes it perfect for binary search
 
 ---
 
-### How the Search Proceeds
-1. Set search range:
-   - `low = 0`
-   - `high = x // 2`
+### How the Search Works
+At each step:
+1. Pick a middle value `mid`
+2. Compute `mid²`
+3. Compare `mid²` with `x`
 
-2. Pick middle:
-   - `mid = (low + high) // 2`
-
-3. Compare:
-   - If `mid * mid == x` → exact square root → return `mid`
-   - If `mid * mid > x` → mid is too large → search left (`high = mid - 1`)
-   - If `mid * mid < x` → mid is too small → search right (`low = mid + 1`)
-
-4. Loop until pointers cross.
+Cases:
+- If `mid² == x` → exact square root found → return `mid`
+- If `mid² > x` → mid is too big → search left side
+- If `mid² < x` → mid is too small → search right side
 
 ---
 
 ### Why We Return `high` at the End
 When the loop ends:
-- `low` has gone **one step too far**
-- `high` points to the **largest value whose square is ≤ x**
+- `low` has crossed over `high`
+- `high` points to the **largest number whose square is ≤ x**
 
-That is exactly ⌊√x⌋.
+This exactly matches the problem requirement:
+> “Return the integer square root (rounded down)”
 
 ---
 
-### Edge Case Handling
-- If `x = 0 or 1`, return `x` directly
-- Avoids unnecessary computation
+### Edge Cases Handled
+- x = 0 → return 0
+- x = 1 → return 1
+- Large x → binary search avoids slow looping
 
 ---
 
 ### Why This Approach Is Good
-- No floating-point math
-- Precise integer result
-- Much faster than linear search
+- Much faster than checking every number
+- Works for very large inputs
+- Clean and commonly expected in interviews
 
 ---
 
 ### Complexity
 - **Time:** O(log x)
 - **Space:** O(1)
+
+---
+
+### Key Insight to Remember
+Whenever you are asked:
+- “find the largest value satisfying some condition”
+- and the condition is **monotonic**
+
+👉 Think **binary search on the answer**
 '''
